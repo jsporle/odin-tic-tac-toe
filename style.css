@@ -16,9 +16,12 @@
 
 .game-cell {
     display: flex;
+    padding: 0;
+    margin: 0;
     align-items: center;
     justify-content: center;
     font-size: 7rem;
+    /* border-radius: 50%; */
     background-color: white;
     /* transition: background-color 200ms ease-in-out; */
 }
@@ -29,4 +32,19 @@
 
 .cell-taken:hover {
     cursor: default;
+}
+
+.container-gameboard.game-over .game-cell {
+    cursor: default;
+}
+
+.winner-animation {
+    animation: winnerPulse 1200ms infinite ease-in-out;
+    color: red;
+}
+
+@keyframes winnerPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.25); }
+    100% { transform: scale(1); }
 }

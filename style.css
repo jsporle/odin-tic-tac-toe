@@ -1,0 +1,32 @@
+* {
+    border: none;
+}
+
+.container-gameboard {
+    display: grid;
+    grid-template: 1fr 1fr 1fr / 1fr 1fr 1fr;
+
+    border: none;
+    gap: 2px;
+    background-color: red;
+
+    width: 500px;
+    height: 500px;
+}
+
+.game-cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 7rem;
+    background-color: white;
+    /* transition: background-color 200ms ease-in-out; */
+}
+
+.game-cell:hover {
+    cursor: pointer;
+}
+
+.cell-taken:hover {
+    cursor: default;
+}

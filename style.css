@@ -6,6 +6,18 @@
     font-family: serif;
 }
 
+/* Google Fonts Material Symbols settings */
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 1,
+  'wght' 700,
+  'GRAD' 0,
+  'opsz' 48;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .container-main {
     display: flex;
     flex-flow: row;
@@ -29,6 +41,36 @@
 
     width: 30em;
     height: 30em;
+}
+
+.reset {
+    display: flex;
+    flex-flow: row;
+    margin-top: 1em;
+    gap: 0.5em;
+    justify-content: end;
+}
+
+.reset button {
+    font-family: "Material Symbols Outlined";
+    font-size: 1.5rem;
+    
+    border: none red;
+    border-radius: 50%;
+    background-color: black;
+    color: white;
+    
+    width: 2em;
+    height: 2em;
+    
+    overflow: hidden;
+}
+
+.reset button:hover {
+    cursor: pointer;
+    color: red;
+    border: 2px solid red;
+    transition: all 200ms ease-in-out;
 }
 
 .game-cell {

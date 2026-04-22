@@ -3,11 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Noughts and Crosses</title>
     <link rel="stylesheet" href="style.css">
     <script src="index.js" defer></script>
 </head>
 <body>
-    <div class="container-gameboard"></div>
+    <div class="container-main">
+        <div class="container-left">
+            <div class="container-gameboard"></div>
+            <div class="reset">
+                <button class="btn-reset-grid">Reset grid</button>
+                <button class="btn-reset-game">Reset game</button>
+            </div>
+        </div>
+        <div class="container-scoreboard">
+            <h1>Noughts and Crosses</h1>
+            <span class="display">X wins: <span class="display-x-wins counter">0</span></span>
+            <span class="display">O wins: <span class="display-o-wins counter">0</span></span>
+            <span class="display">Draws: <span class="display-match-draw counter">0</span></span>
+            <span class="display display-current-state">It's X's turn to play</span>
+        </div>
+    </div>
 </body>
 </html>

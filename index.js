@@ -1,3 +1,48 @@
+// Display
+const DisplayController = (function() {
+    const xWinsText = document.querySelector(".display-x-wins");
+    const oWinsText = document.querySelector(".display-o-wins");
+    const drawsText = document.querySelector(".display-match-draw");
+    const statusText = document.querySelector(".display-current-state");
+
+    let xScore = 0;
+    let oScore = 0;
+    let drawCount = 0;
+
+    const updateScore = (winner) => {
+        let targetElement;
+        let newValue;
+
+        if (winner === "X") {
+            xScore++;
+            targetElement = xWinsText;
+            newValue = xScore;
+        } else if (winner === "O") {
+            oScore++;
+            targetElement = oWinsText
+            newValue = oScore;
+        } else {
+            drawCount++;
+            targetElement = drawsText;
+            newValue = drawCount;
+        }
+
+        targetElement.classList.remove("animate-score");
+        void targetElement.offsetWidth;
+        targetElement.classList.add("animate-score");
+
+        setTimeout(() => {
+            targetElement.textContent = newValue;
+        }, 200);
+    };
+
+    const setStatus = (message) => {
+        statusText.textContent = message;
+    };
+
+    return { updateScore, setStatus }; 
+})();
+
 // Gameboard array
 const gameBoard = (function createGameboard() {
     let arrGameboard = [];
@@ -39,7 +84,10 @@ const gameBoard = (function createGameboard() {
         cell.innerHTML = `<span>${GameController.getCurrentPlayer()}</span>`;
         cell.classList.add("cell-taken");
         GameController.logSelection(cell.id);
+
+        if (!GameController.getEndOfPlay()) {
         GameController.switchPlayer();
+        }
     });
 
     const highlightWinner = (combo) => {
@@ -76,6 +124,7 @@ const GameController = (function() {
 
     const switchPlayer = () => {
         currentPlayer = (currentPlayer === "X") ? "O" : "X";
+        DisplayController.setStatus(`It's ${currentPlayer}'s turn to play`)
     };
 
     const winningCombos = [
@@ -100,8 +149,14 @@ const GameController = (function() {
 
         if (winningCombo) {
             console.log(`${currentPlayer} has won!  `, winningCombo);
-
+            DisplayController.setStatus(`${currentPlayer} won!`);
+            DisplayController.updateScore(currentPlayer);
             gameBoard.highlightWinner(winningCombo);
+            GameController.setEndOfPlay();
+        } else if (xSelections.length + oSelections.length === 9) {
+            DisplayController.setStatus("It's a draw!");
+            DisplayController.updateScore("draw");
+            GameController.setEndOfPlay();
         }
         
     };
@@ -115,12 +170,5 @@ const GameController = (function() {
     };
 })();
 
-
-
-
 console.log(gameBoard.getBoard());
-
-
-// Display
-
 

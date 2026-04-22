@@ -1,5 +1,22 @@
 * {
-    border: none;
+    /* border: 1px red solid; */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: serif;
+}
+
+.container-main {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+    padding: 2em;
+    gap: 3em;
+    background-color: black;
+    overflow: hidden;
 }
 
 .container-gameboard {
@@ -7,11 +24,11 @@
     grid-template: 1fr 1fr 1fr / 1fr 1fr 1fr;
 
     border: none;
-    gap: 2px;
-    background-color: red;
+    gap: 0.5em;
+    /* background-color: red; */
 
-    width: 500px;
-    height: 500px;
+    width: 30em;
+    height: 30em;
 }
 
 .game-cell {
@@ -20,8 +37,8 @@
     margin: 0;
     align-items: center;
     justify-content: center;
-    font-size: 7rem;
-    /* border-radius: 50%; */
+    font-size: 5rem;
+    border-radius: 0.25em;
     background-color: white;
     /* transition: background-color 200ms ease-in-out; */
 }
@@ -43,8 +60,53 @@
     color: red;
 }
 
+.container-scoreboard {
+    display: flex;
+    flex-flow: column;
+    padding: 2em;
+    color: white;
+    line-height: 1.5;
+}
+
+.container-scoreboard h1 {
+    align-self: center;
+    font-size: 3rem;
+}
+
+.display {
+    font-size: 2rem;
+}
+
+.display-current-state {
+    align-self: center;
+    animation: currentStateInOut 2000ms infinite ease-in-out;
+}
+
+.counter {
+    font-size: 2.5rem;
+    display: inline-block;
+    text-align: center;
+}
+
+.animate-score {
+    animation: counterRoll 0.4s ease-in-out
+}
+
 @keyframes winnerPulse {
     0% { transform: scale(1); }
     50% { transform: scale(1.25); }
     100% { transform: scale(1); }
+}
+
+@keyframes currentStateInOut {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+@keyframes counterRoll {
+    0% { opacity: 1; transform: translateY(0); }
+    45% { opacity: 0; transform: translateY(-1em); }
+    55% { opacity: 0; transform: translateY(1em); }
+    100% { opacity: 1; transform: translateY(0em); }
 }

@@ -1,12 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Domine:wght@400..700&display=swap');
 
 * {
-    /* border: 1px red solid; */
+    border: 1px red solid;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: "Domine", serif;
 }
+
 
 /* Google Fonts Material Symbols settings */
 .material-symbols-outlined {
@@ -27,8 +28,8 @@
     justify-content: center;
     height: 100vh;
     width: 100vw;
-    padding: 2em;
-    gap: 3em;
+    padding: 2vw;
+    gap: 3vw;
     background-color: black;
     overflow: hidden;
 }
@@ -38,11 +39,12 @@
     grid-template: 1fr 1fr 1fr / 1fr 1fr 1fr;
 
     border: none;
-    gap: 0.5em;
+    gap: 0.5vw;
     /* background-color: red; */
 
-    width: 30em;
-    height: 30em;
+    padding: 2vw;
+    width: 40vw;
+    height: 40vw;
 }
 
 .game-cell {
@@ -51,7 +53,7 @@
     margin: 0;
     align-items: center;
     justify-content: center;
-    font-size: 5rem;
+    font-size: clamp(0.25rem, 7vw, 20rem);
     border-radius: 0.25em;
     background-color: white;
     /* transition: background-color 200ms ease-in-out; */
@@ -78,22 +80,23 @@
 .reset {
     display: flex;
     flex-flow: row;
-    margin-top: 1em;
-    gap: 0.5em;
+    padding: 0;
+    margin-right: 2vw;
+    gap: 0.5vw;
     justify-content: end;
 }
 
 .reset button {
     font-family: "Material Symbols Outlined";
-    font-size: 1.5rem;
+    font-size: clamp(0.25rem, 2.5vw, 20rem);
     
     border: none red;
     border-radius: 50%;
     background-color: black;
     color: white;
     
-    width: 2em;
-    height: 2em;
+    width: 4vw;
+    height: 4vw;
     
     overflow: hidden;
     transition: transform 30ms ease-in;
@@ -126,18 +129,18 @@
 .container-scoreboard {
     display: flex;
     flex-flow: column;
-    padding: 2em;
+    padding: 2vw;
     color: white;
     line-height: 1.5;
 }
 
 .container-scoreboard h1 {
     align-self: center;
-    font-size: 3rem;
+    font-size: clamp(0.25rem, 4vw, 20rem);
 }
 
 .display {
-    font-size: 2rem;
+    font-size: clamp(0.25rem, 2vw, 20rem);
 }
 
 .display-current-state {
@@ -146,14 +149,14 @@
 }
 
 .counter {
-    font-size: 2.5rem;
+    font-size: clamp(0.25rem, 3vw, 20rem);
     display: inline-block;
     text-align: center;
-    transition: all 300ms ease-in-out;
+    transition: transform 300ms ease-in-out;
 }
 
 .animate-score {
-    animation: counterRoll 0.4s ease-in-out
+    animation: counterRoll 400ms ease-in-out
 }
 
 @keyframes winnerPulse {

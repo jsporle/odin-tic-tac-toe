@@ -1,9 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Domine:wght@400..700&display=swap');
+
 * {
     /* border: 1px red solid; */
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: serif;
+    font-family: "Domine", serif;
 }
 
 /* Google Fonts Material Symbols settings */
@@ -43,6 +45,36 @@
     height: 30em;
 }
 
+.game-cell {
+    display: flex;
+    padding: 0;
+    margin: 0;
+    align-items: center;
+    justify-content: center;
+    font-size: 5rem;
+    border-radius: 0.25em;
+    background-color: white;
+    /* transition: background-color 200ms ease-in-out; */
+    transition: transform 300ms ease-in-out;
+}
+
+.game-cell:hover {
+    cursor: pointer;
+}
+
+.cell-taken:hover {
+    cursor: default;
+}
+
+.container-gameboard.game-over .game-cell {
+    cursor: default;
+}
+
+.winner-animation {
+    animation: winnerPulse 1200ms infinite ease-in-out;
+    color: red;
+}
+
 .reset {
     display: flex;
     flex-flow: row;
@@ -64,42 +96,31 @@
     height: 2em;
     
     overflow: hidden;
+    transition: transform 30ms ease-in;
 }
 
 .reset button:hover {
     cursor: pointer;
     color: red;
     border: 2px solid red;
-    transition: all 200ms ease-in-out;
+    transition: color border 200ms ease-in-out;
 }
 
-.game-cell {
-    display: flex;
-    padding: 0;
-    margin: 0;
-    align-items: center;
-    justify-content: center;
-    font-size: 5rem;
-    border-radius: 0.25em;
-    background-color: white;
-    /* transition: background-color 200ms ease-in-out; */
+.reset button:active {
+    transform: scale(0.97);
+    transition: transform 30ms ease-in;
 }
 
-.game-cell:hover {
-    cursor: pointer;
+.reset-indicator {
+    background-color: pink;
+    transform: scale(1.02);
+    transition: all 300ms ease-in-out;
 }
 
-.cell-taken:hover {
-    cursor: default;
-}
-
-.container-gameboard.game-over .game-cell {
-    cursor: default;
-}
-
-.winner-animation {
-    animation: winnerPulse 1200ms infinite ease-in-out;
-    color: red;
+.delete-indicator {
+    color: pink;
+    transform: scale(1.2);
+    transition: all 300ms ease-in-out;
 }
 
 .container-scoreboard {
@@ -128,6 +149,7 @@
     font-size: 2.5rem;
     display: inline-block;
     text-align: center;
+    transition: all 300ms ease-in-out;
 }
 
 .animate-score {

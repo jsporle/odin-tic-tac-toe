@@ -40,7 +40,18 @@ const DisplayController = (function() {
         statusText.textContent = message;
     };
 
-    return { updateScore, setStatus }; 
+    return { 
+        updateScore, 
+        setStatus,
+        resetScores: () => {
+            xScore = 0;
+            oScore = 0;
+            drawCount = 0;
+            xWinsText.textContent = "0";
+            oWinsText.textContent = "0";
+            drawsText.textContent = "0";
+        }
+    }; 
 })();
 
 // Gameboard array
@@ -109,8 +120,65 @@ const gameBoard = (function createGameboard() {
         highlightWinner,
         resetBoard: () => {
             arrGameboard.forEach(cell => cell.textContent = ""); 
+        },
+        clearGrid: () => {
+            const cells = document.querySelectorAll(".game-cell");
+            cells.forEach(cell => {
+                cell.textContent = "";
+                cell.classList.remove("cell-taken", "winner-animation");
+            });
+            document.querySelector(".container-gameboard").classList.remove("game-over");
         }
     };
+})();
+
+//Reset Panel
+
+const ResetPanel = (function() {
+    const btnReset = document.querySelector(".btn-reset-grid");
+    const btnDelete = document.querySelector(".btn-reset-game");
+    const allCells = document.querySelectorAll(".game-cell")
+    const allCounters = document.querySelectorAll(".counter");
+
+    
+    btnReset.addEventListener("click", () => {
+        gameBoard.clearGrid();
+        GameController.resetLogic();
+        DisplayController.setStatus("Grid reset. It's X's turn.");
+    });
+    
+    btnReset.addEventListener("mouseenter", () => {
+        allCells.forEach(cell => {
+            cell.classList.add("reset-indicator")
+        });
+    });
+
+    btnReset.addEventListener("mouseleave", () => {
+        allCells.forEach(cell => {
+            cell.classList.remove("reset-indicator")
+        });
+    });
+
+    btnDelete.addEventListener("click", () => {
+        DisplayController.resetScores();
+        DisplayController.setStatus("Scores reset")
+    })
+
+    btnDelete.addEventListener("mouseenter", () => {
+        allCounters.forEach(counter => {
+            counter.classList.add("delete-indicator")
+        });
+    });
+
+    btnDelete.addEventListener("mouseleave", () => {
+        allCounters.forEach(counter => {
+            counter.classList.remove("delete-indicator")
+        });
+    });
+
+
+
+
 })();
 
 //Game Controller
@@ -166,7 +234,14 @@ const GameController = (function() {
         getCurrentPlayer, 
         switchPlayer,
         getEndOfPlay: () => endOfPlay,
-        setEndOfPlay: () => endOfPlay = true 
+        setEndOfPlay: () => endOfPlay = true,
+        resetLogic: () => {
+            xSelections = [];
+            oSelections = [];
+            endOfPlay = false;
+            currentPlayer = "X";
+        },
+        resetScores: () => {}
     };
 })();
 
